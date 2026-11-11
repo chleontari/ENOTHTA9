@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAVIOLA – ΤΟ ΜΥΣΤΙΚΟ ΤΩΝ ΚΑΤΑΚΟΜΒΩΝ</title>
+<style>
+:root{--parch:#f1e3c3;--ink:#2b1d12;--terra:#b5532f;--blue:#16294a;--cop:#b87333;--gold:#c9a13b;--ok:#1f6b3a;--bad:#8a2d1a}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--blue);color:var(--ink);font:18px/1.5 Georgia,"Palatino Linotype",serif;overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
+.wrap{max-width:900px;margin:0 auto;padding:12px}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;color:var(--parch);padding:6px 0}
+h1{font-size:1.1rem;margin:0;letter-spacing:.04em}
+.slots{display:flex;gap:6px}
+.slot{width:44px;height:44px;border:2px dashed var(--gold);border-radius:8px;display:grid;place-items:center;font-size:1.5rem;color:var(--gold);font-weight:bold}
+.slot.on{border-style:solid;background:var(--parch);color:var(--terra);animation:pop .5s}
+@keyframes pop{from{transform:scale(1.5)}to{transform:scale(1)}}
+.bar{height:10px;background:#0b1730;border-radius:6px;overflow:hidden;margin:4px 0 10px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cop),var(--gold));transition:width .6s}
+#stage{width:100%;display:block;border:3px solid var(--cop);border-radius:12px;background:#000}
+.card{background:var(--parch);border:3px solid var(--cop);border-radius:12px;padding:16px 18px;margin-top:12px;box-shadow:inset 0 0 40px #c9a13b55}
+h2{margin:0 0 6px;font-size:1.3rem;color:var(--terra)}
+.say{font-style:italic;border-left:5px solid var(--terra);padding-left:10px;margin:8px 0}
+.opts{display:grid;gap:10px;margin:12px 0}
+.opt{min-height:56px;text-align:left;padding:10px 14px;border:2px solid var(--blue);border-radius:10px;background:#fffaf0;color:var(--ink);display:flex;gap:12px;align-items:center}
+.opt:hover{background:#fff1cf}
+.opt .ic{font-size:2rem}
+.opts.obj{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.opts.obj .opt{flex-direction:column;text-align:center;justify-content:center}
+.opt.no{background:#f3d3c8;border-color:var(--bad)}
+.opt.yes{background:#cfe8d3;border-color:var(--ok)}
+.btn{min-height:56px;padding:10px 24px;border:0;border-radius:10px;background:var(--terra);color:#fff;font-weight:bold;margin:4px 6px 4px 0}
+.btn.alt{background:var(--blue)}
+.msg{min-height:1.5em;font-weight:bold;margin:6px 0}
+.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+.hint{background:#fff3c4;border:2px solid var(--gold);border-radius:8px;padding:8px 12px;margin:6px 0}
+.hidden{display:none!important}
+.tray{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.tile{width:64px;height:64px;font-size:2rem;font-weight:bold;border:3px solid var(--cop);border-radius:10px;background:#d9c7a0;color:var(--ink)}
+.tile[aria-pressed=true]{background:var(--gold);transform:translateY(-4px)}
+.tile.used{opacity:.25}
+.plate{display:flex;gap:8px;flex-wrap:wrap;background:#6b645a;padding:14px;border-radius:12px;border:3px solid #3e3a34}
+.plate .tile{background:#8c857a;border-style:dashed}
+.plate .tile.f{background:var(--parch);border-style:solid}
+.intro{text-align:center;color:var(--parch);padding:24px 8px}
+.intro h1{font-size:clamp(1.6rem,6vw,2.8rem);color:var(--gold);margin:12px 0}
+.intro p{max-width:34em;margin:12px auto}
+ul.learn{padding-left:1.2em}
+.note{font-size:.85rem;opacity:.85;margin-top:8px}
+.ring{animation:glow 3s ease-in-out infinite}
+@keyframes glow{50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- Αρχική οθόνη -->
+<section id="intro" class="intro" aria-labelledby="t0">
+  <svg viewBox="0 0 60 100" width="90" height="150" role="img" aria-label="Η μικρή Φαβιόλα με το λυχνάρι της"><use href="#fav"/></svg>
+  <h1 id="t0">FAVIOLA – ΤΟ ΜΥΣΤΙΚΟ ΤΩΝ ΚΑΤΑΚΟΜΒΩΝ</h1>
+  <p>Βρισκόμαστε σε μια πόλη της Ρωμαϊκής Αυτοκρατορίας. Η μικρή Φαβιόλα πρέπει να μεταφέρει ένα σημαντικό μήνυμα σε μια οικογένεια χριστιανών. Θα τη βοηθήσεις να ανακαλύψει τα πέντε γράμματα ενός αρχαίου συμβόλου και να φτάσει στον προορισμό της;</p>
+  <button class="btn" id="start">Ξεκινώ την αποστολή</button>
+  <p class="note">Η Φαβιόλα και η ιστορία της είναι φανταστικές. Τα ιστορικά στοιχεία στους γρίφους είναι πραγματικά. Το παιχνίδι δεν συλλέγει κανένα προσωπικό δεδομένο.</p>
+</section>
+
+<!-- Παιχνίδι -->
+<div id="game" class="hidden">
+  <header>
+    <h1>ΦΑΒΙΟΛΑ · Το μυστικό των κατακομβών</h1>
+    <div class="slots" id="slots" role="group" aria-label="Γράμματα που κέρδισες"></div>
+    <button class="btn alt" id="snd" aria-pressed="true" style="min-height:44px;margin:0">🔊 Ήχος: ναι</button>
+  </header>
+  <div id="prog" style="color:var(--parch)" aria-live="polite"></div>
+  <div class="bar" aria-hidden="true"><i id="fill"></i></div>
+
+<svg id="stage" viewBox="0 0 800 300" role="img" aria-label="Εικόνα σκηνής">
+<defs>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a45c"/><stop offset="1" stop-color="#f1d9a0"/></linearGradient>
+ <radialGradient id="lamp"><stop offset="0" stop-color="#ffd57a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd57a" stop-opacity="0"/></radialGradient>
+ <symbol id="fav" viewBox="0 0 60 100">
+  <path d="M14 98 L18 52 Q30 44 42 52 L46 98Z" fill="#4a2c17"/>
+  <path d="M24 52 Q30 60 36 52" fill="#6b4226"/>
+  <rect x="26" y="40" width="8" height="10" fill="#e0ac84"/>
+  <circle cx="30" cy="28" r="14" fill="#e0ac84"/>
+  <path d="M15 30 Q14 8 30 12 Q46 8 45 30 Q42 18 30 19 Q18 18 15 30Z" fill="#2a1a12"/>
+  <circle cx="25" cy="29" r="1.6" fill="#2a1a12"/><circle cx="35" cy="29" r="1.6" fill="#2a1a12"/>
+  <path d="M26 35 Q30 38 34 35" stroke="#8a4a3a" fill="none" stroke-width="1.5"/>
+  <path d="M42 60 L52 66" stroke="#e0ac84" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="54" cy="70" rx="6" ry="3.5" fill="#b5532f"/><path d="M54 66 Q56 60 54 58 Q51 62 54 66Z" fill="#ffc94d"/>
+ </symbol>
+ <symbol id="per" viewBox="0 0 30 50"><circle cx="15" cy="9" r="7" fill="#d9a77c"/><path d="M4 50 Q4 20 15 18 Q26 20 26 50Z" fill="currentColor"/></symbol>
+ <symbol id="col" viewBox="0 0 20 200"><rect x="2" y="0" width="16" height="12" fill="#e9dcc0"/><rect x="4" y="12" width="12" height="176" fill="#d8c8a4"/><rect x="0" y="188" width="20" height="12" fill="#e9dcc0"/></symbol>
+</defs>
+<!-- 1 Αγορά -->
+<g id="s1"><rect width="800" height="300" fill="url(#sky)"/>
+ <use href="#col" x="40" y="30" width="40" height="270"/><use href="#col" x="330" y="30" width="40" height="270"/><use href="#col" x="720" y="30" width="40" height="270"/>
+ <path d="M90 120h220l-20 -40h-180z" fill="#b5532f"/><rect x="100" y="120" width="200" height="60" fill="#8a5a33"/>
+ <path d="M440 130h240l-20 -45h-200z" fill="#16294a"/><rect x="450" y="130" width="220" height="55" fill="#8a5a33"/>
+ <g color="#7a3a2a"><use href="#per" x="120" y="200" width="40" height="70"/></g><g color="#2d5a6b"><use href="#per" x="390" y="205" width="40" height="70"/></g><g color="#6b5a2d"><use href="#per" x="560" y="200" width="40" height="70"/></g>
+ <rect y="270" width="800" height="30" fill="#a88a5c"/>
+ <g color="#e9dcc0"><use href="#per" x="610" y="195" width="44" height="76"/></g><rect x="596" y="250" width="72" height="8" fill="#6b4a2a"/></g>
+<!-- 2 Σπίτι -->
+<g id="s2"><rect width="800" height="300" fill="#8e4a2f"/><rect y="250" width="800" height="50" fill="#5a3a24"/>
+ <path d="M60 250V120a90 90 0 0 1 180 0V250z" fill="#2a1a12"/><path d="M540 250V120a90 90 0 0 1 180 0V250z" fill="#2a1a12"/>
+ <circle cx="400" cy="110" r="150" fill="url(#lamp)" class="ring"/><ellipse cx="400" cy="130" rx="14" ry="9" fill="#c9a13b"/><path d="M400 118q6-12 0-20q-6 8 0 20z" fill="#ffc94d"/>
+ <g color="#3b5a8a"><use href="#per" x="300" y="170" width="50" height="85"/></g><g color="#8a3b3b"><use href="#per" x="440" y="170" width="50" height="85"/></g><g color="#5a7a3b"><use href="#per" x="380" y="205" width="34" height="58"/></g></g>
+<!-- 3 Στρατιωτική πομπή -->
+<g id="s3"><rect width="800" height="300" fill="#7d7468"/>
+ <g stroke="#5a5348" stroke-width="3" fill="none"><path d="M0 60h800M0 130h800M0 200h800M0 270h800M120 0v60M300 60v70M520 0v60M200 130v70M620 130v70M400 200v70"/></g>
+ <rect x="600" y="40" width="7" height="225" fill="#6b4a2a"/>
+ <path d="M607 50h120v85l-60-18l-60 18z" fill="#9a2f22"/><circle cx="667" cy="85" r="14" fill="#c9a13b"/>
+ <circle cx="470" cy="150" r="110" fill="url(#lamp)" class="ring"/>
+ <path d="M400 150h110l50-30v90l-50-30h-110z" fill="#c9a13b" stroke="#8a6a1f" stroke-width="3"/>
+ <g fill="#fff3c4" font-size="34"><text x="410" y="95" class="ring">♪</text><text x="500" y="80" class="ring">♫</text></g></g>
+<!-- 4 Κατακόμβες -->
+<g id="s4"><rect width="800" height="300" fill="#2a2018"/>
+ <g fill="#1a120c"><rect x="40" y="70" width="140" height="40"/><rect x="40" y="130" width="140" height="40"/><rect x="620" y="70" width="140" height="40"/><rect x="620" y="130" width="140" height="40"/></g>
+ <path d="M300 300V130a100 100 0 0 1 200 0V300z" fill="#120c08"/>
+ <circle cx="230" cy="190" r="80" fill="url(#lamp)" class="ring"/><circle cx="570" cy="190" r="80" fill="url(#lamp)" class="ring"/>
+ <ellipse cx="230" cy="215" rx="12" ry="7" fill="#b5532f"/><ellipse cx="570" cy="215" rx="12" ry="7" fill="#b5532f"/>
+ <path d="M230 205q5-14 0-22q-5 8 0 22zM570 205q5-14 0-22q-5 8 0 22z" fill="#ffc94d"/>
+ <rect y="262" width="800" height="38" fill="#4a3a2a"/></g>
+<!-- 5 Είσοδος -->
+<g id="s5"><rect width="800" height="300" fill="#16294a"/><rect y="250" width="800" height="50" fill="#5a4a38"/>
+ <rect x="260" y="60" width="280" height="190" fill="#b08a5a"/><rect x="350" y="110" width="100" height="140" fill="#ffd57a"/>
+ <circle cx="400" cy="170" r="170" fill="url(#lamp)" class="ring"/>
+ <g fill="#fff3c4" font-size="30"><text x="150" y="110" class="ring">♪</text><text x="610" y="90" class="ring">♫</text><text x="660" y="170" class="ring">♪</text><text x="110" y="190" class="ring">♫</text></g></g>
+<!-- Τέλος -->
+<g id="s6"><rect width="800" height="300" fill="#8e4a2f"/><rect y="250" width="800" height="50" fill="#5a3a24"/>
+ <circle cx="400" cy="130" r="200" fill="url(#lamp)" class="ring"/>
+ <g color="#3b5a8a"><use href="#per" x="480" y="160" width="55" height="92"/></g><g color="#8a3b3b"><use href="#per" x="560" y="170" width="50" height="85"/></g><g color="#5a7a3b"><use href="#per" x="630" y="200" width="36" height="55"/></g>
+ <g fill="#fff3c4" font-size="30"><text x="120" y="80" class="ring">♪</text><text x="260" y="60" class="ring">♫</text><text x="680" y="90" class="ring">♪</text></g></g>
+<!-- Φαβιόλα (ίδια σε όλες τις σκηνές) -->
+<use href="#fav" x="250" y="150" width="90" height="150"/>
+</svg>
+
+  <section class="card" id="panel" aria-live="polite"></section>
+</div>
+</div>
+
+<script>
+"use strict";
+/* ---------- Δεδομένα σκηνών ---------- */
+// mode: 'text' = απλές επιλογές, 'objects' = επιλογή αντικειμένου (εικονίδια)
+const scenes = [
+ {id:1,title:"Η αγορά της Ρώμης",mode:"text",
+  story:"Η Φαβιόλα διασχίζει μια πολυσύχναστη ρωμαϊκή αγορά, με εμπόρους, πολίτες και κίονες. Συναντά έναν ηλικιωμένο γραφέα.",
+  say:"Γεια σου! Ο γραφέας μού έκανε μια ερώτηση. Με βοηθάς;",
+  question:"Τι ήταν η Ρώμη κατά τους πρώτους χριστιανικούς αιώνες;",
+  options:["Μια μικρή απομονωμένη πόλη.","Το κέντρο μιας μεγάλης αυτοκρατορίας με ισχυρό στρατό.","Ένα χωριό χωρίς δρόμους."],
+  correctAnswer:1,feedback:"Σωστά! Η Ρωμαϊκή Αυτοκρατορία εκτεινόταν σε πολλές περιοχές γύρω από τη Μεσόγειο.",
+  hint:"Σκέψου την αγορά γύρω σου: πολλοί άνθρωποι, εμπόριο, στρατιώτες. Ήταν μικρό μέρος;",letter:"Ι"},
+ {id:2,title:"Το σπίτι με το λυχνάρι",mode:"text",
+  story:"Η Φαβιόλα συναντά μια οικογένεια σε ρωμαϊκή κατοικία. Οι άνθρωποι έχουν συγκεντρωθεί για προσευχή.",
+  say:"Ένα λυχνάρι καίει στο σπίτι. Ας καταλάβουμε πού προσεύχονταν.",
+  question:"Πού μπορούσαν να συγκεντρώνονται οι πρώτοι χριστιανοί για προσευχή;",
+  options:["Μόνο σε τεράστιους καθεδρικούς ναούς.","Σε σπίτια πιστών, μεταξύ άλλων χώρων.","Αποκλειστικά σε στρατιωτικά στρατόπεδα."],
+  correctAnswer:1,feedback:"Μπράβο! Οι ιδιωτικές κατοικίες είχαν σημαντικό ρόλο στις πρώτες χριστιανικές κοινότητες.",
+  hint:"Οι πρώτες κοινότητες ήταν μικρές. Ποιος χώρος χωράει μια οικογένεια και φίλους;",letter:"Χ"},
+ {id:3,title:"Οι σάλπιγγες της Ρώμης",mode:"text",
+  story:"Από μακριά ακούγεται δυνατός ήχος χάλκινων οργάνων. Μια στρατιωτική πομπή περνά από τον δρόμο, με λάβαρα και σάλπιγγες.",
+  say:"Τι δυνατός ήχος! Πώς να ήταν η μουσική στη Ρώμη;",
+  question:"Η μουσική στη Ρώμη, τη στρατιωτική υπερδύναμη, έγινε πιο ______.",
+  options:["πομπώδης και επιβλητική","μελαγχολική και χαμηλή","απλή και φωνητική","έμεινε ίδια"],
+  correctAnswer:0,feedback:"Σωστά! Στη Ρώμη η μουσική συνδέθηκε με τον στρατό και τις δημόσιες τελετές και έγινε πιο πομπώδης και επιβλητική.",
+  hint:"Σκέψου μια στρατιωτική πομπή με χάλκινα όργανα. Ο ήχος της είναι δυνατός και επιβλητικός ή χαμηλός και μελαγχολικός;",letter:"Θ"},
+ {id:4,title:"Η στοά της μνήμης",mode:"text",
+  story:"Η Φαβιόλα περνά από μια υπόγεια ταφική στοά με λυχνάρια, τάφους και επιγραφές.",
+  say:"Εδώ μέσα επικρατεί ησυχία. Τι είναι αυτός ο τόπος;",
+  question:"Ποια ήταν η κύρια χρήση των κατακομβών;",
+  options:["Ήταν υπόγεια στάδια.","Ήταν κυρίως χώροι ταφής και μνήμης.","Ήταν σχολές στρατιωτικής εκπαίδευσης."],
+  correctAnswer:1,feedback:"Πολύ σωστά! Οι κατακόμβες ήταν κυρίως χώροι ταφής και μνήμης. Δεν αποτελούσαν τον συνηθισμένο χώρο λατρείας όλων των χριστιανών.",
+  hint:"Κοίτα γύρω: τάφοι και επιγραφές. Τι λέξη ταιριάζει σε αυτά;",letter:"Υ"},
+ {id:5,title:"Η μελωδία της ελπίδας",mode:"objects",
+  story:"Η Φαβιόλα πλησιάζει το σπίτι όπου την περιμένει η οικογένεια. Από το εσωτερικό ακούγονται ανθρώπινες φωνές που ψάλλουν. (Δεν υπάρχει εδώ ηχογράφηση: δεν σώζονται ηχογραφήσεις εκείνης της εποχής.)",
+  say:"Άκουσε! Φωνές που ψάλλουν. Ποιο «όργανο» είναι αυτό;",
+  question:"Ποιο ήταν ένα βασικό μουσικό μέσο της πρώιμης χριστιανικής λατρείας;",
+  options:["Η ανθρώπινη φωνή με ύμνους και ψαλμούς.","Οι ηλεκτρικές κιθάρες.","Οι στρατιωτικές σάλπιγγες ως υποχρεωτική συνοδεία."],
+  icons:["🗣️","🎸","📯"],
+  correctAnswer:0,feedback:"Εξαιρετικά! Η φωνή είχε σημαντική θέση στην προσευχή και στην ψαλμωδία.",
+  hint:"Δεν χρειάζεται όργανο που να το κρατάς. Σκέψου ποιο «όργανο» έχουμε όλοι μέσα μας.",letter:"Σ"}
+];
+const learned=[
+ "Η Ρώμη ήταν το κέντρο μιας μεγάλης αυτοκρατορίας γύρω από τη Μεσόγειο.",
+ "Οι πρώτοι χριστιανοί συγκεντρώνονταν και σε σπίτια πιστών.",
+ "Η μουσική της Ρώμης, μιας στρατιωτικής υπερδύναμης, έγινε πιο πομπώδης και επιβλητική.",
+ "Οι κατακόμβες ήταν κυρίως χώροι ταφής και μνήμης.",
+ "Η ανθρώπινη φωνή, με ύμνους και ψαλμούς, είχε σημαντική θέση στην πρώιμη λατρεία. Η βυζαντινή μουσική παράδοση διαμορφώθηκε αργότερα."
+];
+const WORD=["Ι","Χ","Θ","Υ","Σ"];
+
+/* ---------- Κατάσταση ---------- */
+let cur=0, wrong=0, earned=[], soundOn=true, ctx=null;
+const $=id=>document.getElementById(id);
+const panel=$("panel");
+
+/* ---------- Βοηθητικά DOM (μόνο textContent, όχι innerHTML) ---------- */
+function el(tag,cls,text,attrs){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;
+ if(attrs)for(const k in attrs)e.setAttribute(k,attrs[k]);return e;}
+function clear(n){while(n.firstChild)n.removeChild(n.firstChild);}
+
+/* ---------- Ήχος (Web Audio, μόνο μετά από ενέργεια χρήστη) ---------- */
+function tone(freqs,dur){
+ if(!soundOn)return;
+ try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();
+  freqs.forEach((f,i)=>{const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime+i*dur;
+   o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.12,t+.02);
+   g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g).connect(ctx.destination);o.start(t);o.stop(t+dur);});}catch(e){}
+}
+
+/* ---------- Γράμματα & πρόοδος ---------- */
+function renderSlots(){
+ const s=$("slots");clear(s);
+ for(let i=0;i<5;i++){const d=el("div","slot"+(earned[i]?" on":""),earned[i]||"?",{"aria-label":earned[i]?"Γράμμα "+earned[i]:"Κενή θέση "+(i+1)});s.appendChild(d);}
+}
+function setProgress(){
+ const n=Math.min(cur+1,5);
+ $("prog").textContent=cur<5?"Αποστολή "+n+" από 5":"Τελικός γρίφος";
+ $("fill").style.width=(cur/5*100)+"%";
+}
+function showScene(n){ // n=0..4 σκηνές, 5 = τελική
+ for(let i=1;i<=6;i++)$("s"+i).style.display=(i===n+1)?"inline":"none";
+}
+
+/* ---------- Μετάβαση σκηνής ---------- */
+function goScene(i){
+ cur=i;wrong=0;setProgress();renderSlots();
+ if(i>=5){showScene(4);startFinal();return;}
+ showScene(i);
+ const sc=scenes[i];clear(panel);
+ panel.appendChild(el("h2",null,sc.title));
+ panel.appendChild(el("p",null,sc.story));
+ panel.appendChild(el("p","say","Φαβιόλα: «"+sc.say+"»"));
+ panel.appendChild(el("p",null,sc.question,{id:"q",style:"font-weight:bold"}));
+ const box=el("div","opts"+(sc.mode==="objects"?" obj":""),undefined,{role:"group","aria-labelledby":"q"});
+ sc.options.forEach((t,k)=>{
+  const b=el("button","opt",undefined,{type:"button"});
+  if(sc.mode==="objects")b.appendChild(el("span","ic",sc.icons[k],{"aria-hidden":"true"}));
+  b.appendChild(el("span",null,["Α. ","Β. ","Γ. ","Δ. "][k]+t));
+  b.addEventListener("click",()=>checkAnswer(k,b));
+  box.appendChild(b);
+ });
+ panel.appendChild(box);
+ panel.appendChild(el("p","msg",""," "&&{id:"msg"}));
+ panel.appendChild(el("div","hint hidden","",{id:"hint"}));
+ panel.appendChild(el("div",null,undefined,{id:"act"}));
+ box.querySelector("button").focus({preventScroll:true});
+}
+
+/* ---------- Έλεγχος απάντησης ---------- */
+function checkAnswer(k,btn){
+ const sc=scenes[cur],msg=$("msg");
+ if(k===sc.correctAnswer){
+  btn.classList.add("yes");
+  panel.querySelectorAll(".opt").forEach(b=>b.disabled=true);
+  msg.className="msg ok";msg.textContent=sc.feedback;
+  tone([523,659,784],.16);
+  revealLetter(sc.letter);
+  const nb=el("button","btn",cur<4?"Συνεχίζω την αποστολή":"Πάμε στον τελικό γρίφο",{type:"button"});
+  nb.addEventListener("click",()=>goScene(cur+1));
+  $("act").appendChild(nb);nb.focus();
+ }else{
+  wrong++;btn.classList.add("no");btn.disabled=true;
+  msg.className="msg bad";
+  msg.textContent="Σχεδόν! Δεν πειράζει, δοκίμασε ξανά. Κάθε προσπάθεια σε φέρνει πιο κοντά.";
+  tone([300,260],.15);
+  if(wrong>=2){const h=$("hint");h.textContent="Υπόδειξη: "+sc.hint;h.classList.remove("hidden");}
+ }
+}
+function revealLetter(l){earned[cur]=l;renderSlots();$("fill").style.width=((cur+1)/5*100)+"%";}
+
+/* ---------- Τελικός γρίφος ---------- */
+let placed=[],sel=null,order=[];
+function startFinal(){
+ placed=[null,null,null,null,null];sel=null;
+ order=[2,4,0,3,1]; // σταθερή ανακατεμένη σειρά (Θ,Σ,Ι,Υ,Χ)
+ renderFinal();
+}
+function renderFinal(done){
+ clear(panel);
+ panel.appendChild(el("h2",null,"Η πέτρινη πλάκα"));
+ panel.appendChild(el("p",null,"Φαβιόλα: «Η πλάκα έχει πέντε κενές θέσεις. Βάλε τα γράμματα στη σωστή σειρά και θα σχηματίσεις το αρχαίο σύμβολο!» Σύρε κάθε γράμμα στη θέση του. Αν προτιμάς, διάλεξε ένα γράμμα και μετά μια θέση (κλικ ή πληκτρολόγιο). Για να βγάλεις γράμμα από την πλάκα, πάτα το ή σύρε το έξω."));
+ const tray=el("div","tray",undefined,{role:"group","aria-label":"Γράμματα που συγκέντρωσες"});
+ order.forEach(idx=>{
+  const used=placed.includes(idx);
+  const b=el("button","tile"+(used?" used":""),WORD[idx],{type:"button","aria-pressed":String(sel===idx),"aria-label":"Γράμμα "+WORD[idx]});
+  b.disabled=used||!!done;b.addEventListener("click",()=>{if(noClick)return;sel=(sel===idx?null:idx);renderFinal();});
+  dragify(b,{type:"tray",idx});tray.appendChild(b);
+ });
+ panel.appendChild(tray);
+ const plate=el("div","plate",undefined,{role:"group","aria-label":"Πέτρινη πλάκα με πέντε θέσεις"});
+ placed.forEach((p,pos)=>{
+  const b=el("button","tile"+(p!==null?" f":""),p!==null?WORD[p]:"",{type:"button","aria-label":"Θέση "+(pos+1)+(p!==null?": γράμμα "+WORD[p]:": κενή")});
+  b.dataset.pos=pos;b.disabled=!!done;b.addEventListener("click",()=>{if(noClick)return;placeAt(pos);});
+  dragify(b,{type:"plate",pos});plate.appendChild(b);
+ });
+ panel.appendChild(plate);
+ panel.appendChild(el("p","msg","",{id:"fmsg"}));
+ if(done){finishPuzzle();}
+}
+function placeAt(pos){
+ if(placed[pos]!==null){placed[pos]=null;renderFinal();return;}
+ if(sel===null){renderFinal();$("fmsg").textContent="Διάλεξε πρώτα ένα γράμμα από πάνω.";return;}
+ placed[pos]=sel;sel=null;afterPlace();
+}
+/* Drag-and-drop με pointer events (ποντίκι, αφή, γραφίδα). Το κλικ/πληκτρολόγιο παραμένει εναλλακτική. */
+let noClick=false;
+function dragify(b,from){
+ b.style.touchAction="none";
+ b.addEventListener("pointerdown",e=>{
+  if(b.disabled||e.button>0)return;
+  const val=from.type==="tray"?from.idx:placed[from.pos];
+  if(val===null||val===undefined)return;
+  const sx=e.clientX,sy=e.clientY;let ghost=null,moved=false;
+  const move=ev=>{
+   if(!moved&&Math.hypot(ev.clientX-sx,ev.clientY-sy)<8)return;
+   moved=true;
+   if(!ghost){ghost=el("div","tile",WORD[val]);ghost.style.cssText="position:fixed;pointer-events:none;z-index:99;background:#c9a13b;opacity:.9";document.body.appendChild(ghost);}
+   ghost.style.left=(ev.clientX-32)+"px";ghost.style.top=(ev.clientY-32)+"px";
+  };
+  const up=ev=>{
+   document.removeEventListener("pointermove",move);document.removeEventListener("pointerup",up);document.removeEventListener("pointercancel",up);
+   if(ghost)ghost.remove();
+   if(!moved)return; // απλό κλικ: το χειρίζεται ο click listener
+   noClick=true;setTimeout(()=>{noClick=false;},50);
+   const t=document.elementFromPoint(ev.clientX,ev.clientY),slot=t&&t.closest("[data-pos]");
+   if(slot){
+    const pos=+slot.dataset.pos;
+    if(from.type==="plate"&&from.pos!==pos){const old=placed[pos];placed[pos]=val;placed[from.pos]=old;}
+    else if(from.type==="tray")placed[pos]=val;
+    sel=null;afterPlace();
+   }else if(from.type==="plate"){placed[from.pos]=null;renderFinal();}
+   else renderFinal();
+  };
+  document.addEventListener("pointermove",move);document.addEventListener("pointerup",up);document.addEventListener("pointercancel",up);
+ });
+}
+function afterPlace(){
+ tone([440],.1);
+ if(placed.every(p=>p!==null)){
+  if(placed.every((p,i)=>p===i)){renderFinal(true);}
+  else{renderFinal();const m=$("fmsg");m.className="msg bad";m.textContent="Όχι ακόμη! Θυμήσου τη σειρά που κέρδισες τα γράμματα: Ι, Χ, Θ, Υ, Σ. Βγάλε γράμματα και δοκίμασε ξανά.";tone([300,260],.15);}
+ }else renderFinal();
+}
+function finishPuzzle(){
+ tone([523,659,784,1047],.18);$("fill").style.width="100%";
+ const m=$("fmsg");m.className="msg ok";m.textContent="Το ΙΧΘΥΣ σχηματίστηκε!";
+ panel.appendChild(el("p",null,"Η λέξη ΙΧΘΥΣ σημαίνει ψάρι. Οι πρώτοι χριστιανοί τη συνέδεσαν με τα αρχικά της φράσης: Ιησούς Χριστός Θεού Υιός Σωτήρ."));
+ panel.appendChild(el("p","note","Στο παιχνίδι λειτουργεί ως συμβολικός εκπαιδευτικός γρίφος. Δεν ήταν υποχρεωτικός μυστικός κωδικός που χρησιμοποιούσαν όλοι οι χριστιανοί."));
+ const b=el("button","btn","Η Φαβιόλα φτάνει στον προορισμό",{type:"button"});
+ b.addEventListener("click",endScene);panel.appendChild(b);b.focus();
+}
+
+/* ---------- Τελική σκηνή ---------- */
+function endScene(){
+ showScene(5);clear(panel);
+ panel.appendChild(el("h2",null,"Η οικογένεια υποδέχεται τη Φαβιόλα"));
+ panel.appendChild(el("p",null,"Η Φαβιόλα φτάνει στο σπίτι. Οι άνθρωποι την υποδέχονται με χαμόγελο. Μια απαλή αίσθηση ψαλμωδίας και φωτός ολοκληρώνει την περιπέτεια. (Οι νότες στην εικόνα είναι απλή αναπαράσταση, όχι ιστορική μουσική.)"));
+ panel.appendChild(el("p","msg ok","Συγχαρητήρια! Βοήθησες τη Φαβιόλα και ανακάλυψες το μυστικό των κατακομβών και το σύμβολο ΙΧΘΥΣ. Έμαθες πώς η πίστη, τα σύμβολα και η ανθρώπινη φωνή συνδέονταν με τη ζωή των πρώτων χριστιανών."));
+ const again=el("button","btn","Παίζω ξανά",{type:"button"});again.addEventListener("click",restart);
+ const wl=el("button","btn alt","Τι έμαθα;",{type:"button"});wl.addEventListener("click",showLearned);
+ panel.appendChild(again);panel.appendChild(wl);again.focus({preventScroll:true});
+}
+function showLearned(){
+ clear(panel);panel.appendChild(el("h2",null,"Τι έμαθα;"));
+ const ul=el("ul","learn");learned.forEach(t=>ul.appendChild(el("li",null,t)));panel.appendChild(ul);
+ panel.appendChild(el("p","note","Ιστορική σημείωση: οι διωγμοί έγιναν σε συγκεκριμένες περιόδους και τόπους. Η Φαβιόλα είναι φανταστικό πρόσωπο."));
+ const again=el("button","btn","Παίζω ξανά",{type:"button"});again.addEventListener("click",restart);
+ const back=el("button","btn alt","Πίσω",{type:"button"});back.addEventListener("click",endScene);
+ panel.appendChild(again);panel.appendChild(back);back.focus();
+}
+
+/* ---------- Εκκίνηση / επανεκκίνηση ---------- */
+function restart(){earned=[];placed=[];sel=null;goScene(0);window.scrollTo(0,0);}
+$("start").addEventListener("click",()=>{
+ $("intro").classList.add("hidden");$("game").classList.remove("hidden");tone([392,523],.15);restart();
+});
+$("snd").addEventListener("click",e=>{
+ soundOn=!soundOn;e.currentTarget.setAttribute("aria-pressed",String(soundOn));
+ e.currentTarget.textContent=soundOn?"🔊 Ήχος: ναι":"🔇 Ήχος: όχι";
+});
+</script>
+</body>
+</html>
