@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Το Λεξικό του Μικρού Ψάλτη</title>
+<style>
+:root{--perg:#f6ecd2;--perg2:#ecdcae;--blue:#1f3a6e;--bord:#7a1f2e;--gold:#c9a24a;--ink:#2a1d12;--ok:#1d6b3a;--no:#9a3412}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--perg);color:var(--ink);font:18px/1.5 "Segoe UI",system-ui,sans-serif}
+h1,h2,h3,.w{font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif}
+:focus-visible{outline:3px solid #b3261e;outline-offset:3px}
+.btn{font:inherit;font-weight:600;border:2px solid transparent;border-radius:999px;padding:.55em 1.1em;cursor:pointer;min-height:44px}
+.blue{background:var(--blue);color:#fff}.gold{background:var(--gold);color:var(--ink);border-color:#8a6510}
+.ghost{background:#fff8e6;color:var(--blue);border-color:var(--blue)}.btn:disabled{opacity:.6;cursor:not-allowed}
+.intro{min-height:100vh;display:grid;place-items:center;padding:20px;background:repeating-linear-gradient(0deg,var(--perg) 0 118px,#d9c48f 118px 126px)}
+.wrap{max-width:760px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;background:var(--perg);border:4px double var(--gold);border-radius:28px;padding:24px}
+.monk{width:130px;flex:none}.bubble{flex:1;min-width:260px}
+.bubble h1{margin:0;color:var(--bord);font-size:2rem;line-height:1.15}.sub{margin:.2em 0 1em;color:var(--blue);font-weight:600}
+.say::first-letter{font:700 2.3em Georgia,serif;color:var(--bord);float:left;line-height:.9;padding-right:.08em}
+header{display:flex;gap:14px;align-items:center;padding:12px 18px;background:var(--blue);color:#fff;border-bottom:5px solid var(--gold)}
+header .monk{width:64px}header h1{margin:0;font-size:1.5rem}header p{margin:0;color:#f0e2b6}
+nav{display:flex;gap:10px;padding:12px 18px}
+nav .btn[aria-pressed=true]{background:var(--bord);color:#fff}nav .btn{background:#fff8e6;color:var(--bord);border-color:var(--bord)}
+main{max-width:1100px;margin:0 auto;padding:0 18px 40px}
+.tools{display:grid;gap:10px;background:var(--perg2);border-radius:20px;padding:14px;margin-bottom:14px}
+.tools label{font-weight:600}input[type=search]{font:inherit;padding:.55em .9em;border:2px solid var(--blue);border-radius:14px;width:100%;max-width:420px;background:#fffdf5}
+progress{width:100%;max-width:420px;height:16px;accent-color:var(--bord)}.chk{font-weight:400!important;font-size:.9rem}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+[role=tab]{font:inherit;font-weight:600;border:2px solid var(--blue);border-radius:14px;background:#fff8e6;color:var(--blue);padding:.5em .9em;cursor:pointer;min-height:44px}
+[role=tab][aria-selected=true]{background:var(--blue);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:#fffaf0;border:3px solid var(--gold);border-radius:22px;min-height:250px;display:flex}
+.card.done{border-color:var(--ok)}
+.face{flex:1;border:0;background:none;font:inherit;color:inherit;padding:16px;border-radius:19px}
+.front{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;cursor:pointer}
+.front:hover{background:#fff3d0}.ico{font-size:2.6rem}.w{font-size:1.5rem;font-weight:700;color:var(--bord)}
+.hint{font-size:.85rem;color:#5a4630}.tick{background:var(--ok);color:#fff;border-radius:999px;padding:0 .7em;font-size:.85rem}
+.back h3{margin:0 0 4px;color:var(--bord);font-size:1.4rem}.back p{margin:.3em 0}.ex{background:var(--perg);border-radius:12px;padding:6px 10px}
+.src{font-size:.8rem;color:#5a4630;font-style:italic}.acts{display:grid;gap:6px;margin-top:8px}.acts .btn{font-size:.9rem;padding:.35em .8em}
+.turn{animation:turn .35s ease}@keyframes turn{from{transform:rotateY(80deg);opacity:.2}to{transform:none;opacity:1}}
+.gm{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+#gbox{background:#fffaf0;border:3px solid var(--gold);border-radius:22px;padding:18px;min-height:200px}
+#gbox h3{margin:0 0 6px;color:var(--bord)}.qq{font-size:1.2rem;font-weight:600}
+.opts{display:grid;gap:10px;max-width:560px}.opt{background:#fff8e6;color:var(--ink);border-color:var(--blue);text-align:left;border-radius:16px}
+.opt.sel{background:var(--blue);color:#fff}.opt.ok{background:#d9f0e0;border-color:var(--ok);opacity:1}.opt.no{background:#fde8d9;border-color:var(--no);opacity:1}
+#fb{margin:10px 0;font-weight:600}.mt{display:grid;grid-template-columns:1fr 2fr;gap:10px}.col{display:grid;gap:8px;align-content:start}.def{font-weight:400;font-size:.9rem}
+dialog{border:4px double var(--gold);border-radius:26px;background:var(--perg);max-width:520px;text-align:center;padding:22px}
+dialog::backdrop{background:rgba(31,58,110,.6)}dialog h2{color:var(--bord)}
+@media(max-width:560px){.mt{grid-template-columns:1fr}.monk{width:100px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<section class="intro" id="intro">
+ <div class="wrap">
+  <div class="monk" data-monk aria-hidden="true"></div>
+  <div class="bubble">
+   <h1>Το Λεξικό του Μικρού Ψάλτη</h1>
+   <p class="sub">Ανακαλύπτω τη μουσική του Βυζαντίου</p>
+   <p class="say">«Καλώς ήρθες στη βιβλιοθήκη της μονής μας! Εδώ φυλάμε πολύτιμες λέξεις από τον κόσμο της βυζαντινής μουσικής. Άνοιξε τις κάρτες, ανακάλυψε τις σημασίες τους και δοκίμασε τις γνώσεις σου!»</p>
+   <button class="btn gold" id="start">Ανοίγω το λεξικό</button>
+  </div>
+ </div>
+</section>
+
+<div id="app" hidden>
+ <header>
+  <div class="monk" data-monk aria-hidden="true"></div>
+  <div><h1>Το Λεξικό του Μικρού Ψάλτη</h1><p>Ανακαλύπτω τη μουσική του Βυζαντίου</p></div>
+ </header>
+ <nav aria-label="Μέρη της εφαρμογής">
+  <button class="btn" data-view="dict" aria-pressed="true">Λεξικό</button>
+  <button class="btn" data-view="games" aria-pressed="false">Παιχνίδια</button>
+ </nav>
+ <main>
+  <section id="dict" aria-label="Λεξικό">
+   <div class="tools">
+    <label for="q">Αναζήτηση λέξης</label>
+    <input id="q" type="search" autocomplete="off" placeholder="π.χ. ηχος, ακριτας">
+    <div><p id="pt" role="status" aria-live="polite" style="margin:0 0 4px;font-weight:600">Έμαθα 0 από 16 λέξεις</p><progress id="pb" max="16" value="0" aria-label="Πρόοδος"></progress></div>
+    <label class="chk"><input type="checkbox" id="sv"> Να θυμάται αυτή η συσκευή την πρόοδό μου (μόνο εδώ, χωρίς αποστολή δεδομένων)</label>
+    <div><button class="btn ghost" id="rs">Μηδενίζω την πρόοδο</button></div>
+   </div>
+   <div class="row" id="tabs" role="tablist" aria-label="Θεματικές ενότητες"></div>
+   <p id="none" hidden>Δεν βρέθηκε λέξη. Δοκίμασε λιγότερα γράμματα.</p>
+   <div class="grid" id="grid" role="tabpanel"></div>
+  </section>
+  <section id="games" aria-label="Παιχνίδια" hidden>
+   <div class="gm">
+    <button class="btn blue" data-g="1">Βρες τη σωστή λέξη</button>
+    <button class="btn blue" data-g="2">Ένωσε τα ζευγάρια</button>
+    <button class="btn blue" data-g="3">Συμπλήρωσε τη φράση</button>
+   </div>
+   <label class="chk"><input type="checkbox" id="sc" checked> Εμφάνιση πόντων (όχι αρνητικών)</label>
+   <div id="gbox" style="margin-top:12px"><p>Διάλεξε ένα παιχνίδι για να ξεκινήσεις.</p></div>
+  </section>
+ </main>
+</div>
+
+<dialog id="rw" aria-labelledby="rwt">
+ <svg width="150" height="90" viewBox="0 0 150 90" aria-hidden="true"><rect x="14" y="14" width="122" height="62" fill="#e6c466" stroke="#8a6510" stroke-width="3"/><rect x="6" y="8" width="14" height="74" rx="7" fill="#c9a24a" stroke="#8a6510" stroke-width="3"/><rect x="130" y="8" width="14" height="74" rx="7" fill="#c9a24a" stroke="#8a6510" stroke-width="3"/><path d="M34 34h82M34 46h82M34 58h60" stroke="#7a1f2e" stroke-width="3" stroke-linecap="round"/></svg>
+ <h2 id="rwt">Συγχαρητήρια! Έγινες μικρός γνώστης της βυζαντινής μουσικής!</h2>
+ <div id="rwl"></div>
+ <p><button class="btn ghost" id="rwc">Κλείνω</button></p>
+</dialog>
+
+<script>
+// Ο δάσκαλος μπορεί να βάλει εδώ το πραγματικό URL του ΨΜΑ «Ψαλτικόν Αναλόγιον».
+const PSALTIKON_URL = "";
+
+const CATS=["Εκκλησιαστική μουσική","Μουσική γραφή και θεωρία","Άνθρωποι και χώροι","Ακριτική και λαϊκή παράδοση"];
+const B="Σχολικό βιβλίο",S="Συμπληρωματικός όρος";
+const glossaryTerms=[
+{id:"bz",term:"Βυζαντινή μουσική",category:CATS[0],definition:"Η μουσική παράδοση που αναπτύχθηκε στο Βυζάντιο, με σημαντική θέση της εκκλησιαστικής ψαλτικής.",example:"Η βυζαντινή μουσική ακουγόταν στις εκκλησίες της αυτοκρατορίας.",icon:"🎶",relatedTerms:["psal"],sourceType:B},
+{id:"psal",term:"Ψαλτική τέχνη",category:CATS[0],definition:"Η τέχνη της φωνητικής απόδοσης εκκλησιαστικών ύμνων και ψαλμών.",example:"Η ψαλτική τέχνη ζητά καθαρή φωνή και προσοχή.",icon:"🎤",relatedTerms:["ymnos"],sourceType:S},
+{id:"ymnos",term:"Ύμνος",category:CATS[0],definition:"Θρησκευτικό τραγούδι με λόγια δοξολογίας ή προσευχής.",example:"Στην εκκλησία ψάλλεται ένας ύμνος με λόγια δοξολογίας.",icon:"🙏",relatedTerms:["ymnodos"],sourceType:S},
+{id:"ymnodos",term:"Υμνωδός",category:CATS[0],definition:"Πρόσωπο που δημιουργεί ή συνδέεται με τη σύνθεση εκκλησιαστικών ύμνων.",example:"Σπουδαίοι υμνωδοί βοήθησαν να εξελιχθεί η εκκλησιαστική μουσική.",icon:"✍️",relatedTerms:["ymnos"],sourceType:B},
+{id:"para",term:"Παρασημαντική",category:CATS[1],definition:"Η ιδιαίτερη μουσική γραφή της βυζαντινής ψαλτικής.",example:"Με την παρασημαντική γράφονταν οι μελωδίες, όπως εμείς γράφουμε στο πεντάγραμμο.",icon:"🖋️",relatedTerms:["ixos"],sourceType:B},
+{id:"fon",term:"Φωνητική μουσική",category:CATS[1],definition:"Μουσική που αποδίδεται με τη φωνή. Η βυζαντινή εκκλησιαστική μουσική είναι φωνητική.",example:"Ο ψάλτης δεν παίζει όργανο· ψάλλει με τη φωνή του, γιατί η βυζαντινή μουσική είναι φωνητική.",icon:"🎙️",relatedTerms:["bz"],sourceType:B},
+{id:"ixos",term:"Ήχος",category:CATS[1],definition:"Μελωδικός τρόπος της βυζαντινής μουσικής. Δεν είναι απλώς μία νότα ή ένα μουσικό όργανο.",example:"Ο ψάλτης ψάλλει τον ύμνο στον πρώτο ήχο.",icon:"🎼",relatedTerms:["alim"],sourceType:B},
+{id:"alim",term:"Αρχαίες κλίμακες",category:CATS[1],definition:"Οι διαδοχές φθόγγων που περιέγραφε η μουσική θεωρία των αρχαίων Ελλήνων, με την οποία συνδέεται η βυζαντινή μουσική.",example:"Η βυζαντινή μουσική συνδέεται με τη θεωρία των αρχαίων Ελλήνων και τις κλίμακες που χρησιμοποιούσαν.",icon:"🏺",relatedTerms:["ixos"],sourceType:S},
+{id:"moni",term:"Μονή",category:CATS[2],definition:"Μοναστήρι όπου, μεταξύ άλλων, καλλιεργούνταν και διδασκόταν η εκκλησιαστική μουσική.",example:"Στη μονή μάθαιναν ψαλτική και οι νέοι μοναχοί.",icon:"🏛️",relatedTerms:["monachos"],sourceType:B},
+{id:"monachos",term:"Μοναχός",category:CATS[2],definition:"Μέλος μοναστικής κοινότητας.",example:"Ο μοναχός ζει και προσεύχεται μαζί με την αδελφότητά του.",icon:"🕯️",relatedTerms:["moni"],sourceType:S},
+{id:"psaltis",term:"Ψάλτης",category:CATS[2],definition:"Αυτός που αποδίδει τους ύμνους κατά την εκκλησιαστική λατρεία.",example:"Ο ψάλτης στέκεται στο αναλόγιο και ψάλλει.",icon:"🗣️",relatedTerms:["analogio"],sourceType:S},
+{id:"analogio",term:"Αναλόγιο",category:CATS[2],definition:"Το έπιπλο ή στήριγμα όπου τοποθετούνται τα λειτουργικά και μουσικά βιβλία των ψαλτών.",example:"Το βιβλίο με τους ύμνους ήταν ανοιχτό πάνω στο αναλόγιο.",icon:"📖",relatedTerms:["psaltis"],sourceType:S},
+{id:"akritas",term:"Ακρίτας",category:CATS[3],definition:"Υπερασπιστής των συνόρων της Βυζαντινής Αυτοκρατορίας.",example:"Ο ακρίτας φύλαγε τα σύνορα της αυτοκρατορίας.",icon:"🛡️",relatedTerms:["akritiko"],sourceType:S},
+{id:"akritiko",term:"Ακριτικό τραγούδι",category:CATS[3],definition:"Παραδοσιακό αφηγηματικό τραγούδι με ήρωες και κατορθώματα ακριτών.",example:"Το ακριτικό τραγούδι διηγείται τα κατορθώματα των ακριτών.",icon:"🎵",relatedTerms:["prof"],sourceType:B},
+{id:"digenis",term:"Διγενής Ακρίτας",category:CATS[3],definition:"Ηρωική μορφή της ακριτικής παράδοσης.",example:"Ο Διγενής Ακρίτας είναι ήρωας των ακριτικών τραγουδιών.",icon:"⚔️",relatedTerms:["akritas"],sourceType:S},
+{id:"prof",term:"Προφορική παράδοση",category:CATS[3],definition:"Η μετάδοση τραγουδιών και ιστοριών από άνθρωπο σε άνθρωπο, χωρίς να είναι απαραίτητη η γραπτή καταγραφή.",example:"Πολλά τραγούδια έφτασαν ως εμάς με προφορική παράδοση, από στόμα σε στόμα.",icon:"👂",relatedTerms:["akritiko"],sourceType:B}
+];
+const T=glossaryTerms,byId=Object.fromEntries(T.map(t=>[t.id,t]));
+const $=s=>document.querySelector(s);
+const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/ς/g,"σ");
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const KEY="lexiko-mikrou-psalti-v1";
+let tab=0,q="";const flipped=new Set(),learned=new Set();
+
+const MONK='<svg viewBox="0 0 100 115"><path d="M14 115Q18 62 50 60Q82 62 86 115Z" fill="#1f3a6e"/><path d="M47 76h6v18h-6zM42 82h16v5H42z" fill="#c9a24a"/><circle cx="50" cy="40" r="22" fill="#f2cfa0"/><rect x="31" y="9" width="38" height="20" rx="6" fill="#2b2233"/><path d="M30 44Q50 82 70 44Q60 60 50 60Q40 60 30 44Z" fill="#b9a58a"/><circle cx="42" cy="38" r="2.6" fill="#2a1d12"/><circle cx="58" cy="38" r="2.6" fill="#2a1d12"/><path d="M42 48Q50 55 58 48" stroke="#7a1f2e" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>';
+document.querySelectorAll("[data-monk]").forEach(e=>e.innerHTML=MONK);
+
+function save(){try{if($("#sv").checked)localStorage.setItem(KEY,JSON.stringify([...learned]));else localStorage.removeItem(KEY)}catch(e){}}
+function load(){try{const v=JSON.parse(localStorage.getItem(KEY)||"null");if(Array.isArray(v)){v.forEach(id=>byId[id]&&learned.add(id));$("#sv").checked=true}}catch(e){}}
+
+function card(t){
+ const f=flipped.has(t.id),l=learned.has(t.id),r=byId[t.relatedTerms[0]];
+ return `<article class="card${l?" done":""}" id="c-${t.id}" aria-label="${t.term}">
+ <button class="face front" data-flip="${t.id}" ${f?"hidden":""}><span class="ico" aria-hidden="true">${t.icon}</span><span class="w">${t.term}</span>${l?'<span class="tick">Το έμαθα ✓</span>':""}<span class="hint">Πάτα για να δεις τη σημασία</span></button>
+ <div class="face back" ${f?"":"hidden"}><h3 tabindex="-1">${t.term}</h3><p>${t.definition}</p><p class="ex"><b>Παράδειγμα:</b> ${t.example}</p><p class="src">Πηγή όρου: ${t.sourceType}</p>
+ <div class="acts"><button class="btn ${l?"ghost":"gold"}" data-learn="${t.id}" aria-pressed="${l}">${l?"Το έμαθα ✓":"Το έμαθα!"}</button><button class="btn blue" data-rel="${r.id}">Δες μια σχετική λέξη: ${r.term}</button><button class="btn ghost" data-flip="${t.id}">Γύρνα την κάρτα</button></div></div></article>`;
+}
+function render(){
+ $("#tabs").hidden=!!q;
+ $("#tabs").innerHTML=CATS.map((c,i)=>`<button role="tab" id="tab-${i}" aria-selected="${i===tab}" aria-controls="grid" tabindex="${i===tab?0:-1}" data-tab="${i}">${c}</button>`).join("");
+ const list=q?T.filter(t=>norm(t.term).includes(norm(q))):T.filter(t=>t.category===CATS[tab]);
+ const g=$("#grid");g.innerHTML=list.map(card).join("");
+ q?g.removeAttribute("aria-labelledby"):g.setAttribute("aria-labelledby","tab-"+tab);
+ $("#none").hidden=list.length>0;
+ $("#pt").textContent=`Έμαθα ${learned.size} από 16 λέξεις`;$("#pb").value=learned.size;
+}
+$("#tabs").addEventListener("click",e=>{const b=e.target.closest("[data-tab]");if(b){tab=+b.dataset.tab;render();$("#tab-"+tab).focus()}});
+$("#tabs").addEventListener("keydown",e=>{
+ const k={ArrowRight:1,ArrowLeft:-1}[e.key];
+ if(k){tab=(tab+k+4)%4;render();$("#tab-"+tab).focus();e.preventDefault()}
+ if(e.key==="Home"){tab=0;render();$("#tab-0").focus();e.preventDefault()}
+ if(e.key==="End"){tab=3;render();$("#tab-3").focus();e.preventDefault()}
+});
+$("#grid").addEventListener("click",e=>{
+ const b=e.target.closest("[data-flip],[data-learn],[data-rel]");if(!b)return;
+ if(b.dataset.flip){
+  const id=b.dataset.flip;flipped.has(id)?flipped.delete(id):flipped.add(id);render();
+  const c=$("#c-"+id),open=flipped.has(id);
+  c.querySelector(".face:not([hidden])").classList.add("turn");
+  c.querySelector(open?".back h3":".front").focus();
+ }else if(b.dataset.learn){
+  const id=b.dataset.learn,was=learned.size;
+  learned.has(id)?learned.delete(id):learned.add(id);save();render();
+  $(`[data-learn="${id}"]`).focus();
+  if(learned.size===16&&was<16)reward();
+ }else{
+  const id=b.dataset.rel;q="";$("#q").value="";tab=CATS.indexOf(byId[id].category);flipped.add(id);render();
+  const c=$("#c-"+id);c.querySelector(".face:not([hidden])").classList.add("turn");
+  c.scrollIntoView({block:"center"});c.querySelector(".back h3").focus();
+ }
+});
+$("#q").addEventListener("input",e=>{q=e.target.value.trim();render()});
+$("#sv").addEventListener("change",save);
+$("#rs").addEventListener("click",()=>{if(confirm("Να μηδενίσω την πρόοδό σου;")){learned.clear();flipped.clear();save();render()}});
+
+function reward(){
+ const box=$("#rwl");
+ if(PSALTIKON_URL){box.innerHTML=`<a class="btn gold" style="display:inline-block;text-decoration:none" href="${PSALTIKON_URL}" target="_blank" rel="noopener">Συνεχίζω το μουσικό ταξίδι</a>`}
+ else box.innerHTML='<button class="btn gold" disabled>Συνεχίζω το μουσικό ταξίδι</button><p style="font-size:.9rem">Ο σύνδεσμος προς το ΨΜΑ «Ψαλτικόν Αναλόγιον» θα προστεθεί σύντομα από τον εκπαιδευτικό σου.</p>';
+ $("#rw").showModal();
+}
+$("#rwc").addEventListener("click",()=>$("#rw").close());
+
+/* ---------- Παιχνίδια ---------- */
+const box=()=>$("#gbox");
+const pts=s=>$("#sc").checked?`<p>Πόντοι: ${s}</p>`:"";
+const G3=[
+{q:"Η ιδιαίτερη μουσική γραφή της βυζαντινής ψαλτικής ονομάζεται _____.",opts:["παρασημαντική","αναλόγιο","μονή"],ans:"παρασημαντική",expl:"Η παρασημαντική είναι η μουσική γραφή της βυζαντινής ψαλτικής."},
+{q:"Τα τραγούδια για τα κατορθώματα των υπερασπιστών των συνόρων ονομάζονται _____.",opts:["ακριτικά","ύμνοι","ήχοι"],ans:"ακριτικά",expl:"Ακριτικά τραγούδια λέμε αυτά που αφηγούνται κατορθώματα ακριτών."},
+{q:"Η μετάδοση τραγουδιών από γενιά σε γενιά ονομάζεται _____ παράδοση.",opts:["προφορική","γραπτή","ηλεκτρονική"],ans:"προφορική",expl:"Στην προφορική παράδοση τα τραγούδια περνούν από στόμα σε στόμα."},
+{q:"Ο _____ είναι ένας μελωδικός τρόπος της βυζαντινής μουσικής.",opts:["ήχος","ψάλτης","ακρίτας"],ans:"ήχος",expl:"Ο ήχος είναι μελωδικός τρόπος, όχι μία νότα ή ένα όργανο."},
+{q:"Ο _____ αποδίδει τους ύμνους κατά την εκκλησιαστική λατρεία.",opts:["ψάλτης","ακρίτας","ήχος"],ans:"ψάλτης",expl:"Ο ψάλτης ψάλλει τους ύμνους, συνήθως στο αναλόγιο."}
+];
+function makeG1(){return shuf(T).slice(0,8).map(t=>({q:t.definition,opts:shuf([t.term,...shuf(T.filter(x=>x!==t)).slice(0,2).map(x=>x.term)]),ans:t.term,expl:"Παράδειγμα: "+t.example}))}
+function quiz(title,maker){
+ const items=maker();let i=0,s=0;const b=box();
+ function show(){
+  if(i>=items.length){
+   const msg=s>=items.length-1?"Εξαιρετικά!":s>=items.length/2?"Πολύ καλά!":"Καλή προσπάθεια! Με λίγη επανάληψη θα γίνεις πιο σίγουρος.";
+   b.innerHTML=`<h3 id="gh" tabindex="-1">${title}: τέλος!</h3><p class="qq">${msg} Σωστές απαντήσεις: ${s} από ${items.length}.</p><button class="btn gold" id="again">Παίζω ξανά</button>`;
+   $("#gh").focus();$("#again").onclick=()=>quiz(title,maker);return;
+  }
+  const it=items[i];
+  b.innerHTML=`<h3 id="gh" tabindex="-1">${title} · ερώτηση ${i+1} από ${items.length}</h3>${pts(s)}<p class="qq">${it.q}</p><div class="opts">${it.opts.map(o=>`<button class="btn opt" data-o="${o}">${o}</button>`).join("")}</div><div id="fb" role="status" aria-live="polite"></div>`;
+  $("#gh").focus();
+  b.querySelectorAll(".opt").forEach(btn=>btn.onclick=()=>{
+   const ok=btn.dataset.o===it.ans;if(ok)s++;
+   b.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(x.dataset.o===it.ans){x.classList.add("ok");x.textContent="✓ "+x.dataset.o}});
+   if(!ok){btn.classList.add("no");btn.textContent="✗ "+btn.dataset.o}
+   $("#fb").innerHTML=(ok?"Μπράβο! Σωστά. ":"Δεν πειράζει, έτσι μαθαίνουμε! Η σωστή απάντηση είναι «"+it.ans+"». ")+it.expl+'<br><button class="btn blue" id="nx" style="margin-top:8px">'+(i===items.length-1?"Δες το αποτέλεσμα":"Επόμενη")+"</button>";
+   $("#nx").focus();$("#nx").onclick=()=>{i++;show()};
+  });
+ }
+ show();
+}
+function match(){
+ const pick=shuf(T).slice(0,6),L=shuf(pick),R=shuf(pick);let sel=null,done=0;const b=box();
+ b.innerHTML=`<h3 id="gh" tabindex="-1">Ένωσε τα ζευγάρια</h3><p>Διάλεξε έναν όρο και μετά τον ορισμό του.</p><div class="mt"><div class="col">${L.map(t=>`<button class="btn opt" data-l="${t.id}" aria-pressed="false">${t.term}</button>`).join("")}</div><div class="col">${R.map(t=>`<button class="btn opt def" data-r="${t.id}">${t.definition}</button>`).join("")}</div></div><div id="fb" role="status" aria-live="polite"></div>`;
+ $("#gh").focus();
+ b.querySelectorAll("[data-l]").forEach(x=>x.onclick=()=>{
+  b.querySelectorAll("[data-l]").forEach(y=>{y.classList.remove("sel");y.setAttribute("aria-pressed","false")});
+  sel=x.dataset.l;x.classList.add("sel");x.setAttribute("aria-pressed","true");$("#fb").textContent="Τώρα διάλεξε τον ορισμό του.";
+ });
+ b.querySelectorAll("[data-r]").forEach(x=>x.onclick=()=>{
+  if(!sel){$("#fb").textContent="Διάλεξε πρώτα έναν όρο από αριστερά.";return}
+  if(x.dataset.r===sel){
+   const l=b.querySelector(`[data-l="${sel}"]`);
+   [l,x].forEach(y=>{y.disabled=true;y.classList.remove("sel");y.classList.add("ok")});l.textContent="✓ "+byId[sel].term;
+   $("#fb").textContent="Μπράβο! "+byId[sel].example;sel=null;done++;
+   if(done===6){b.insertAdjacentHTML("beforeend",`<p class="qq">Βρήκες και τα 6 ζευγάρια!${$("#sc").checked?" Πόντοι: 6 από 6.":""}</p><button class="btn gold" id="again">Παίζω ξανά</button>`);$("#again").onclick=match;$("#again").focus()}
+  }else $("#fb").textContent="Σχεδόν! Δοκίμασε έναν άλλο ορισμό — δεν χάνεις πόντους.";
+ });
+}
+document.querySelector("#games .gm").addEventListener("click",e=>{
+ const g=e.target.closest("[data-g]");if(!g)return;
+ ({1:()=>quiz("Βρες τη σωστή λέξη",makeG1),2:match,3:()=>quiz("Συμπλήρωσε τη φράση",()=>G3.map(x=>({...x,opts:shuf(x.opts)})))})[g.dataset.g]();
+});
+
+/* ---------- Πλοήγηση ---------- */
+document.querySelector("nav").addEventListener("click",e=>{
+ const b=e.target.closest("[data-view]");if(!b)return;
+ document.querySelectorAll("nav .btn").forEach(x=>x.setAttribute("aria-pressed",x===b));
+ $("#dict").hidden=b.dataset.view!=="dict";$("#games").hidden=b.dataset.view!=="games";
+});
+$("#start").addEventListener("click",()=>{$("#intro").hidden=true;$("#app").hidden=false;$("#q").focus()});
+load();render();
+</script>
+</body>
+</html>
