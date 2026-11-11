@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ένα διαδραστικό ταξίδι στη μουσική, για μαθητές ΣΤ΄ Δημοτικού.">
+<title>Η Χρυσή Κλωστή της Ελληνικής Μουσικής – Ταξίδι στους Αιώνες</title>
+<style>
+:root{--ink:#182f48;--muted:#4d6070;--gold:#ab7516;--paper:#f7f5ee;--line:#dedfd8;--tint:#edf2ed}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.65}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #1a689b;outline-offset:5px}button{touch-action:manipulation}.skip{position:absolute;left:12px;top:-80px;background:white;padding:12px;z-index:5}.skip:focus{top:12px}.shell{max-width:1120px;margin:auto;padding:30px clamp(18px,4vw,48px)}.topbar{display:flex;justify-content:space-between;gap:15px;align-items:center;font-size:.8rem;font-weight:750;letter-spacing:.07em}.brand{display:flex;align-items:center;gap:9px}.brand span{font-size:1.5rem;color:var(--gold)}.badge{border:1px solid #d8d8c9;padding:5px 12px;border-radius:30px;white-space:nowrap}header{position:relative;padding:42px 0 26px;max-width:800px}.eyebrow{color:#77520e;font-size:.78rem;font-weight:800;letter-spacing:.12em}h1{font-size:clamp(2rem,4.4vw,3.35rem);line-height:1.14;letter-spacing:-.035em;margin:13px 0 15px}h1 em{font-style:normal;color:#956915}header p{max-width:640px;color:var(--muted);margin:0;font-size:1.04rem}.journey{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:18px 0 14px;font-size:.84rem}.journey p{margin:0}.progress{display:flex;align-items:center;gap:10px}.track{width:74px;height:5px;border-radius:8px;background:#dddcd1;overflow:hidden}.track span{display:block;width:0;height:100%;background:var(--gold);transition:width .25s}.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.tab{background:#fffdf8;border:1px solid var(--line);border-radius:15px;min-height:96px;display:flex;align-items:center;gap:12px;padding:16px;text-align:left;position:relative;transition:background .2s,border-color .2s}.tab[aria-selected=true]{border:2px solid var(--gold);padding:15px;background:#fff8e5;box-shadow:0 4px 14px #8e6d1710}.tab .emoji{font-size:1.9rem}.tab strong{display:block;font-size:.95rem}.tab small{font-size:.7rem;color:var(--muted)}.tab .done{position:absolute;right:8px;top:3px;color:#35623d;font-weight:800}.timeline{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:18px 0 24px;text-align:center;font-size:.69rem;color:var(--muted)}.timeline:before{content:"";position:absolute;top:6px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,#c29338,#ebd18a,#b78226)}.stop{position:relative;padding-top:19px}.stop:before{content:"";position:absolute;top:1px;left:calc(50% - 5px);width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid #b58931}.stop.active{color:#785215;font-weight:800}.stop.active:before{background:#b58931;box-shadow:0 0 0 4px #d9b85e30}.period{background:#fffefa;border:1px solid var(--line);border-radius:22px;overflow:hidden}.period-intro{background:var(--tint);padding:24px 30px;display:flex;align-items:flex-start;gap:20px}.period-number{font-family:Georgia,serif;font-size:2.6rem;line-height:1.3;opacity:.35}.period-intro h2{font-size:1.6rem;margin:0 0 5px}.period-intro p{margin:0;max-width:830px;font-size:.94rem}.learning{padding:26px 30px 30px;display:grid;grid-template-columns:minmax(215px,.8fr) minmax(0,1.8fr);gap:30px}.label{font-size:.73rem;font-weight:800;letter-spacing:.08em;color:var(--muted);margin:0 0 12px}.branches{display:grid;gap:12px}.branch{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);background:#fffefa;border-radius:13px;padding:16px;text-align:left;width:100%}.branch[aria-pressed=true]{background:#faf2dd;border-color:#b78a30;box-shadow:inset 3px 0 #b78a30}.branch-icon{font-size:1.5rem}.branch strong{display:block;line-height:1.4;font-size:.93rem}.branch small{display:block;margin-top:6px;font-size:.78rem;line-height:1.55;color:var(--muted)}.detail{min-width:0}.detail-heading{display:flex;align-items:center;gap:10px}.detail-heading span{font-size:2rem}.detail h3{margin:0;font-size:1.3rem;line-height:1.35}.detail>p{font-size:.98rem;margin:13px 0 18px}.examples{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 19px}.examples li{font-size:.8rem;padding:5px 11px;border-radius:30px;background:#eff2f4;border:1px solid #e2e6e9}.think{background:#f6f4ed;border-radius:12px;padding:14px 17px;border-left:3px solid #b48930}.think strong{display:block;font-size:.74rem;color:#785215;margin-bottom:3px}.think p{margin:0;font-size:.91rem}.more{margin-top:20px;background:var(--ink);color:white;border:0;border-radius:9px;padding:10px 17px;font-size:.87rem;font-weight:650}.more:hover{background:#294e70}.bottom{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-top:19px;color:var(--muted);font-size:.76rem}.bottom p{margin:0}.connection{max-width:700px}.celebrate{padding:14px;border:1px solid #b8913c;background:#fff4d1;border-radius:12px;margin-top:18px;font-weight:700}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}dialog{border:1px solid #e5d6ac;border-radius:21px;padding:30px;max-width:470px;width:calc(100% - 32px);color:var(--ink);background:#fffdf6;box-shadow:0 25px 90px #10243b40}dialog::backdrop{background:#10243b99}dialog h2{font-size:1.4rem;margin:14px 0}dialog p{line-height:1.8}.close{float:right;background:transparent;border:1px solid #c9c9be;border-radius:50%;width:38px;height:38px;font-size:1.3rem}.fact-icon{font-size:2rem}.modal-period{font-size:.8rem;color:var(--muted)}@media(max-width:720px){.shell{padding-top:18px}header{padding-top:30px}.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.tab{min-height:86px}.learning{grid-template-columns:minmax(0,1fr);gap:24px;padding:22px}.branches{grid-template-columns:repeat(2,minmax(0,1fr))}.branch{padding:12px;gap:8px}.branch-icon{font-size:1.2rem}.period-intro{padding:22px;gap:13px}.period-number{font-size:2rem}.journey{align-items:flex-start;flex-direction:column;gap:7px}.bottom{flex-direction:column;gap:9px}.topbar{font-size:.65rem}.badge{padding:4px 9px}.timeline{font-size:.62rem}.timeline .stop{padding-left:3px;padding-right:3px}}@media(max-width:390px){.tab{gap:7px;padding:11px}.tab[aria-selected=true]{padding:10px}.tab .emoji{font-size:1.4rem}.tab strong{font-size:.82rem}.branches{grid-template-columns:minmax(0,1fr)}.branch small{margin-top:3px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<a class="skip" href="#learning">Μετάβαση στο περιεχόμενο</a>
+<div class="shell">
+<div class="topbar"><div class="brand"><span aria-hidden="true">〰</span> ΜΟΥΣΙΚΗ • ΣΤ΄ ΔΗΜΟΤΙΚΟΥ</div><span class="badge">Εξερεύνηση 5–8 λεπτών</span></div>
+<header><div class="eyebrow">ΤΑΞΙΔΙ ΣΤΟΥΣ ΑΙΩΝΕΣ</div><h1>Η <em>Χρυσή Κλωστή</em><br>της Ελληνικής Μουσικής</h1><p>Τέσσερις σταθμοί, πολλές ιστορίες. Ανακάλυψε πώς η μουσική συνδέει τους ανθρώπους και ταξιδεύει από γενιά σε γενιά.</p></header>
+<main>
+<div class="journey"><p id="instructions">Διάλεξε έναν σταθμό και άνοιξε και τις δύο κάρτες του.</p><div class="progress"><span id="progress" role="status" aria-live="polite">Σταθμοί που εξερεύνησα: 0/4</span><span class="track" aria-hidden="true"><span id="progress-fill"></span></span></div></div>
+<nav aria-label="Ιστορικοί και θεματικοί σταθμοί"><div class="tabs" role="tablist" aria-label="Σταθμοί της μουσικής" aria-describedby="instructions" id="tabs"></div></nav>
+<div class="timeline" aria-label="Η χρυσή κλωστή στον χρόνο" id="timeline"></div>
+<section class="period" id="period-panel" role="tabpanel" aria-labelledby="tab-ancient" tabindex="0">
+<div class="period-intro"><span class="period-number" id="period-number" aria-hidden="true">01</span><div><h2 id="period-title"></h2><p id="period-definition"></p></div></div>
+<div class="learning" id="learning" tabindex="-1"><aside aria-label="Μουσικές εκφράσεις"><p class="label">ΔΥΟ ΤΡΟΠΟΙ ΝΑ ΑΝΑΚΑΛΥΨΕΙΣ</p><div class="branches" id="branches"></div></aside><article class="detail" aria-labelledby="branch-title"><div class="detail-heading"><span id="branch-icon" aria-hidden="true"></span><h3 id="branch-title"></h3></div><p id="branch-detail"></p><h4 class="label">ΠΑΡΑΔΕΙΓΜΑΤΑ</h4><ul class="examples" id="examples"></ul><div class="think"><strong>ΣΤΑΣΟΥ ΚΑΙ ΣΚΕΨΟΥ</strong><p id="question"></p></div><button class="more" id="more" type="button" aria-haspopup="dialog">Μάθε περισσότερα <span aria-hidden="true">↗</span></button></article></div>
+</section>
+<p class="sr-only" role="status" aria-live="polite" id="selection-status"></p>
+<div class="celebrate" id="celebration" role="status" hidden>Μπράβο! Ακολούθησες τη χρυσή κλωστή της ελληνικής μουσικής!</div>
+</main>
+<footer class="bottom"><p class="connection"><strong>Η κλωστή συνεχίζεται:</strong> Η μουσική αλλάζει μέσα στον χρόνο, κρατώντας μνήμες και δεσμούς. Τα ακριτικά είναι μία σημαντική παλαιότερη παράδοση που συνδέεται με το ευρύτερο δημοτικό τραγούδι.</p><p>Χωρίς λογαριασμό • Χωρίς συλλογή δεδομένων<br>Η πρόοδός σου διατηρείται όσο η σελίδα μένει ανοιχτή.</p></footer>
+</div>
+<dialog id="fact-modal" aria-labelledby="modal-title" aria-describedby="modal-fact"><button type="button" id="close" class="close" aria-label="Κλείσιμο παραθύρου">×</button><span class="fact-icon" aria-hidden="true">💡</span><h2 id="modal-title">Το ήξερες;</h2><div id="modal-period" class="modal-period"></div><p id="modal-fact"></p><button type="button" id="understood" class="more">Το κατάλαβα!</button></dialog>
+<noscript><p>Για να εξερευνήσεις τους σταθμούς, ενεργοποίησε τη JavaScript στο πρόγραμμα περιήγησης. Δεν χρειάζεται σύνδεση στο διαδίκτυο.</p></noscript>
+<script>
+'use strict';
+// Όλο το περιεχόμενο είναι τοπικό. Δεν χρησιμοποιούνται δίκτυο ή αποθήκευση.
+const periods = {
+ ancient: {
+  title:'Αρχαιότητα', icon:'🏛️', time:'Αρχαία Ελλάδα', tint:'#edf2ed',
+  definition:'Στην αρχαία Ελλάδα η μουσική συνδεόταν με τη θρησκεία, την εκπαίδευση, τις γιορτές, το θέατρο και σημαντικές στιγμές της συλλογικής ζωής.',
+  fact:'Οι παιάνες δεν ήταν μόνο πολεμικά τραγούδια. Ήταν επίσης ύμνοι που συνδέονταν με τη λατρεία, ιδιαίτερα του Απόλλωνα.',
+  branches:[
+   {name:'Πολεμικοί παιάνες',icon:'🛡️',summary:'Ένα κοινό τραγούδι δίνει θάρρος και ενώνει.',detail:'Οι παιάνες ήταν ύμνοι που συνδέονταν με τη λατρεία και, σε ορισμένες περιστάσεις, με τον πόλεμο. Οι πολεμικοί παιάνες μπορούσαν να δίνουν θάρρος στους πολεμιστές και να τους κάνουν να νιώθουν ενωμένοι. Η μουσική και ο ρυθμός συνόδευαν διάφορες στρατιωτικές δραστηριότητες.',examples:['Πολεμικός παιάνας','Αυλός σε στρατιωτικό πλαίσιο','Ομαδικό άσμα'],question:'Γιατί ένα κοινό τραγούδι μπορούσε να δώσει θάρρος στους στρατιώτες;'},
+   {name:'Μουσική και εκπαίδευση',icon:'🎶',summary:'Μαθαίνω με ποίηση, τραγούδι και όργανα.',detail:'Σε πολλές αρχαιοελληνικές κοινωνίες, η μουσική ήταν σημαντικό μέρος της αγωγής των παιδιών. Η μάθηση συνδεόταν με την ποίηση, το τραγούδι και την εκμάθηση οργάνων, όπως η λύρα και η κιθάρα. Έτσι, τα παιδιά γνώριζαν ιστορίες, εξασκούσαν τον ρυθμό και συμμετείχαν στη μουσική ζωή της κοινότητάς τους.',examples:['Λύρα','Κιθάρα','Μουσική σε γιορτές'],question:'Γιατί οι αρχαίοι Έλληνες θεωρούσαν σημαντική τη μουσική παιδεία;'}
+  ]
+ },
+ roman: {
+  title:'Ρώμη',icon:'🏺',time:'Ρωμαϊκή εποχή',tint:'#f5ebe4',
+  definition:'Στη Ρωμαϊκή εποχή η μουσική είχε σημαντική θέση στις δημόσιες εκδηλώσεις, στους στρατιωτικούς σχηματισμούς, στις γιορτές και στις θριαμβευτικές πομπές. Η ρωμαϊκή μουσική ζωή επηρεάστηκε και από τον ελληνικό πολιτισμό.',
+  fact:'Το ρωμαϊκό cornu ήταν ένα μεγάλο καμπυλωτό χάλκινο πνευστό όργανο που μπορούσε να ακουστεί σε στρατιωτικές περιστάσεις.',
+  branches:[
+   {name:'Στρατιωτικές σάλπιγγες',icon:'🎺',summary:'Δυνατοί ήχοι μεταφέρουν σήματα.',detail:'Στον ρωμαϊκό στρατό, δυνατοί ήχοι πνευστών οργάνων βοηθούσαν στη μεταφορά σημάτων. Η ρωμαϊκή τούμπα, που λεγόταν tuba, και το καμπυλωτό κόρνου, ή cornu, ακούγονταν σε στρατιωτικές και τελετουργικές περιστάσεις. Τα όργανα βοηθούσαν στην επικοινωνία ανάμεσα σε πολλούς ανθρώπους και δημιουργούσαν επιβλητική ατμόσφαιρα.',examples:['Ρωμαϊκή tuba (τούμπα)','Cornu (κόρνου)','Στρατιωτικά σαλπίσματα'],question:'Γιατί ήταν χρήσιμος ένας δυνατός ήχος σάλπιγγας σε έναν μεγάλο στρατό;'},
+   {name:'Θρίαμβοι και δημόσιες γιορτές',icon:'🏵️',summary:'Η μουσική δίνει επισημότητα στις πομπές.',detail:'Φαντάσου μια μεγάλη πομπή να περνά μέσα από τη Ρώμη. Η μουσική συνόδευε τέτοιες δημόσιες τελετές και γιορτές. Τα δυνατά πνευστά έκαναν την εκδήλωση πιο επίσημη και επιβλητική. Οι ήχοι τραβούσαν την προσοχή του κόσμου και συνόδευαν την κίνηση των ανθρώπων στην πομπή.',examples:['Θριαμβευτική πομπή','Δημόσια γιορτή','Μουσική τελετουργικής συνοδείας'],question:'Πώς αλλάζει η ατμόσφαιρα μιας πομπής όταν ακούγονται δυνατά πνευστά;'}
+  ]
+ },
+ byzantine: {
+  title:'Βυζάντιο',icon:'⛪',time:'Βυζαντινή εποχή',tint:'#efeaf5',
+  definition:'Στο Βυζάντιο αναπτύχθηκε πλούσια μουσική παράδοση. Η εκκλησιαστική ψαλτική συνδέθηκε με τη χριστιανική λατρεία, ενώ τα ακριτικά τραγούδια διατήρησαν αφηγήσεις για τους υπερασπιστές των συνόρων.',
+  fact:'Η παρασημαντική χρησιμοποιεί ιδιαίτερα μουσικά σημάδια, τα νεύματα, αντί για το σύγχρονο πεντάγραμμο.',
+  branches:[
+   {name:'Βυζαντινή ψαλτική',icon:'📜',summary:'Φωνές και μουσικά σημάδια στη λατρεία.',detail:'Η βυζαντινή ψαλτική είναι κυρίως φωνητική εκκλησιαστική μουσική, συνδεδεμένη με τη χριστιανική λατρεία. Οι ψάλτες μαθαίνουν και αποδίδουν τα μέλη, δηλαδή τις μελωδίες. Η ιδιαίτερη γραφή τους λέγεται παρασημαντική. Οι οκτώ ήχοι, η Οκτώηχος, είναι ένα σύστημα μελωδικών τρόπων, όχι απλώς οκτώ νότες.',examples:['Ύμνος και ψάλτης — χοράρχης: οδηγεί τον χορό','Παρασημαντική','Οκτώηχος'],question:'Πώς μπορούσαν οι ψάλτες να διατηρούν και να μεταδίδουν μια μελωδία;'},
+   {name:'Ακριτικά τραγούδια',icon:'🐎',summary:'Ιστορίες ηρώων που ζουν μέσα στα τραγούδια.',detail:'Τα ακριτικά τραγούδια ανήκουν στην αφηγηματική λαϊκή παράδοση και δεν είναι εκκλησιαστικοί ύμνοι. Μιλούν για τους ακρίτες, τους υπερασπιστές των συνόρων της Βυζαντινής Αυτοκρατορίας. Αφηγούνται τη γενναιότητα, τα κατορθώματα και τις δυσκολίες των ηρώων. Κεντρική μορφή αυτής της παράδοσης είναι ο Διγενής Ακρίτας.',examples:['Διγενής Ακρίτας','Ακριτικό έπος','Ηρωικό αφηγηματικό τραγούδι'],question:'Πώς ένα τραγούδι μπορεί να διατηρήσει ζωντανή τη μνήμη ενός ήρωα;'}
+  ]
+ },
+ folk: {
+  title:'Δημοτικό τραγούδι',icon:'🎻',time:'Παράδοση που συνεχίζεται',tint:'#eaf1ee',
+  definition:'Το ελληνικό δημοτικό τραγούδι αποτελεί σημαντικό μέρος της λαϊκής μουσικής παράδοσης. Μεταδίδεται από γενιά σε γενιά και συνδέεται με τη ζωή, τις εμπειρίες, τις γιορτές και τη συλλογική μνήμη. Είναι θεματικός σταθμός της συνέχειας της παράδοσης, χωρίς αυστηρή ημερομηνία έναρξης.',
+  fact:'Το ίδιο δημοτικό τραγούδι μπορεί να συναντάται σε διαφορετικές περιοχές με παραλλαγές στους στίχους ή στη μελωδία.',
+  branches:[
+   {name:'Τραγούδια της ζωής',icon:'🌿',summary:'Αγάπη, ξενιτιά, γιορτές και μνήμες.',detail:'Τα δημοτικά τραγούδια μιλούν για την αγάπη, την ξενιτιά, τον γάμο, την εργασία και ιστορικά γεγονότα. Μεταδίδονται κυρίως προφορικά: οι άνθρωποι τα μαθαίνουν ακούγοντας και τραγουδώντας μαζί. Κάθε τόπος έχει τις δικές του παραδόσεις και παραλλαγές, που κρατούν ζωντανές εμπειρίες και μνήμες της κοινότητας.',examples:['Νανουρίσματα','Τραγούδια του γάμου','Κλέφτικα τραγούδια'],question:'Ποιες στιγμές της σημερινής ζωής συνοδεύονται από τραγούδια;'},
+   {name:'Όργανα και χοροί',icon:'🥁',summary:'Ο ρυθμός φέρνει την παρέα στον χορό.',detail:'Στη δημοτική μουσική, ο χορός και τα τοπικά μουσικά σύνολα φέρνουν τους ανθρώπους κοντά. Τα όργανα διαφέρουν ανά περιοχή και ιστορική εποχή. Ζουρνάς, νταούλι, κλαρίνο και λύρα συναντιούνται σε διαφορετικές παραδόσεις. Οι σημερινές μορφές οργάνων και χορών δεν εμφανίστηκαν όλες μαζί σε μία συγκεκριμένη χρονολογία.',examples:['Ζουρνάς και νταούλι','Κλαρίνο και λύρα','Τσάμικος — χορός'],question:'Πώς βοηθά η μουσική τους ανθρώπους να χορεύουν μαζί;'}
+  ]
+ }
+};
+const keys=Object.keys(periods);
+const $=id=>document.getElementById(id);
+const visited=Object.fromEntries(keys.map(key=>[key,new Set()]));
+let activePeriod='ancient';
+let returnFocus=null;
+const tabs=[];
+const stops=[];
+// Δημιουργία σταθερής πλοήγησης, χωρίς εισαγωγή HTML από δεδομένα.
+keys.forEach((key,index)=>{
+ const period=periods[key];
+ const tab=document.createElement('button');
+ tab.type='button';tab.id='tab-'+key;tab.className='tab';
+ tab.setAttribute('role','tab');tab.setAttribute('aria-controls','period-panel');
+ const icon=document.createElement('span');icon.className='emoji';icon.setAttribute('aria-hidden','true');icon.textContent=period.icon;
+ const text=document.createElement('span');const title=document.createElement('strong');title.textContent=period.title;
+ const subtitle=document.createElement('small');subtitle.textContent=period.time;
+ const done=document.createElement('span');done.className='done';done.setAttribute('aria-hidden','true');
+ text.append(title,subtitle);tab.append(icon,text,done);
+ tab.addEventListener('click',()=>selectPeriod(key));
+ tab.addEventListener('keydown',event=>{
+  let next=index;
+  if(event.key==='ArrowRight')next=(index+1)%keys.length;
+  else if(event.key==='ArrowLeft')next=(index+keys.length-1)%keys.length;
+  else if(event.key==='Home')next=0;
+  else if(event.key==='End')next=keys.length-1;
+  else return;
+  event.preventDefault();selectPeriod(keys[next]);tabs[next].focus();
+ });
+ tabs.push(tab);$('tabs').append(tab);
+ const stop=document.createElement('div');stop.className='stop';stop.textContent=period.title;stops.push(stop);$('timeline').append(stop);
+});
+function selectPeriod(key){
+ if(!Object.hasOwn(periods,key))return;
+ activePeriod=key;const period=periods[key];
+ tabs.forEach((tab,index)=>{
+  const selected=keys[index]===key;
+  tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1;
+  stops[index].classList.toggle('active',selected);
+  if(selected)stops[index].setAttribute('aria-current','step');else stops[index].removeAttribute('aria-current');
+ });
+ $('period-panel').setAttribute('aria-labelledby','tab-'+key);
+ $('period-panel').style.setProperty('--tint',period.tint);
+ $('period-number').textContent=String(keys.indexOf(key)+1).padStart(2,'0');
+ $('period-title').textContent=period.title;$('period-definition').textContent=period.definition;
+ $('more').setAttribute('aria-label','Μάθε περισσότερα: '+period.title);
+ $('branches').replaceChildren();
+ period.branches.forEach((branch,index)=>{
+  const card=document.createElement('button');card.type='button';card.className='branch';card.setAttribute('aria-pressed','false');
+  const icon=document.createElement('span');icon.className='branch-icon';icon.setAttribute('aria-hidden','true');icon.textContent=branch.icon;
+  const text=document.createElement('span');const title=document.createElement('strong');title.textContent=branch.name;
+  const summary=document.createElement('small');summary.textContent=branch.summary;
+  text.append(title,summary);card.append(icon,text);card.addEventListener('click',()=>selectBranch(index));$('branches').append(card);
+ });
+ selectBranch(0);
+}
+function selectBranch(index){
+ const period=periods[activePeriod];const branch=period.branches[index];if(!branch)return;
+ Array.from($('branches').children).forEach((card,i)=>card.setAttribute('aria-pressed',String(i===index)));
+ $('branch-title').textContent=branch.name;$('branch-icon').textContent=branch.icon;
+ $('branch-detail').textContent=branch.detail;$('question').textContent=branch.question;
+ $('examples').replaceChildren();branch.examples.forEach(example=>{const item=document.createElement('li');item.textContent=example;$('examples').append(item);});
+ $('selection-status').textContent=period.title+' — '+branch.name;
+ visited[activePeriod].add(index);updateProgress();
+}
+function updateProgress(){
+ const completed=keys.filter(key=>visited[key].size===2);
+ $('progress').textContent='Σταθμοί που εξερεύνησα: '+completed.length+'/4';
+ $('progress-fill').style.width=(completed.length*25)+'%';
+ tabs.forEach((tab,index)=>{
+  const done=completed.includes(keys[index]);tab.querySelector('.done').textContent=done?'✓':'';
+  if(done)tab.setAttribute('aria-label',periods[keys[index]].title+' — εξερευνήθηκε');else tab.removeAttribute('aria-label');
+ });
+ $('celebration').hidden=completed.length!==4;
+}
+function openModal(){
+ const modal=$('fact-modal');if(modal.open)return;
+ returnFocus=document.activeElement;$('modal-period').textContent=periods[activePeriod].title;
+ $('modal-fact').textContent=periods[activePeriod].fact;modal.showModal();$('close').focus();
+}
+function closeModal(){if($('fact-modal').open)$('fact-modal').close();}
+$('more').addEventListener('click',openModal);
+$('close').addEventListener('click',closeModal);$('understood').addEventListener('click',closeModal);
+$('fact-modal').addEventListener('cancel',event=>{event.preventDefault();closeModal();});
+$('fact-modal').addEventListener('close',()=>{if(returnFocus&&returnFocus.isConnected)returnFocus.focus();});
+$('fact-modal').addEventListener('click',event=>{
+ if(event.target!==$('fact-modal'))return;
+ const box=$('fact-modal').getBoundingClientRect();
+ if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)closeModal();
+});
+$('fact-modal').addEventListener('keydown',event=>{
+ if(event.key!=='Tab')return;
+ const first=$('close'),last=$('understood');
+ if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+ else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+});
+selectPeriod('ancient');
+</script>
+</body>
+</html>
